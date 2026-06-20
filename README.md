@@ -9,7 +9,7 @@ https://nutriglow-production-6f3b.up.railway.app/
 ## 1\. What this app does
 
 1. **Home page** — pick your Gender, Diet, Lifestyle, and Starting day. Diet and Lifestyle options are extracted **dynamically** from your `Halal\_Meals\_Plan.xlsx` file, so if you edit the spreadsheet and add a new Diet, it will automatically show up as a new option next time you restart the app.
-2. **Generate** — the backend filters the dataset to your Diet + Lifestyle and builds a 5-weekday plan (Mon–Fri), 3 meals/day, with **no duplicate meals** across the whole week.
+2. **Generate** — the backend filters the dataset to your Diet + Lifestyle and builds a 5-weekday plan (Mon–Fri or Sun-Thu), 3 meals/day, with **no duplicate meals** across the whole week.
 3. **Result page** — a single page with two tabs (Meal Plan / Shopping List) that you can switch between freely with **no data loss and no reload**. You can download either view as a polished PDF, or start a new plan (with a styled confirmation popup protecting you from losing your current plan).
 
 \---
@@ -23,7 +23,7 @@ nutriglow/
 ├── meal\_planner.py         # 5-day plan builder + fallback-matching logic
 ├── ingredient\_parser.py    # Ingredients-column parser + shopping list aggregator
 ├── translations\_data.py    # EN→AR dictionary for dataset content (meal names,
-│                            # ingredients, macros, calories) -- see §6 below
+│                            # ingredients, macros, calories) -- (see step 4)
 ├── pdf\_generator.py        # ReportLab PDF builder (EN + AR)
 ├── data/
 │   └── Halal\_Meals\_Plan.xlsx
