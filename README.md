@@ -32,7 +32,7 @@ nutriglow/
 │   ├── js/translations.js  # all EN/AR \*UI\* strings (buttons, headings, etc.)
 │   ├── js/home.js          # Home page logic
 │   ├── js/results.js       # Result page logic (tabs, exit modal, PDF download)
-│   └── fonts/              # AmiriQuran-Regular.ttf land here automatically (see §4)
+│   └── fonts/              # Amiri-Regular.ttf Amiri-Bold.ttf here (see step 4)
 └── templates/
     ├── index.html          # Home page
     └── result.html         # Result page (Meal Plan + Shopping List tabs)
@@ -64,16 +64,17 @@ Then open **http://127.0.0.1:5000** in your browser.
 
 Browsers render Arabic perfectly out of the box. PDFs are different: the PDF library (ReportLab) needs an **Arabic-supporting font file** on disk to draw Arabic glyphs correctly — without one, Arabic text in the PDF shows up as boxes (▪▪▪) instead of letters.
 
-**This now happens automatically.** The first time you download an Arabic PDF, the app downloads the **AmiriQuran** font (the same family used across the website) directly from Google Fonts and caches it in `static/fonts/` — no manual step needed, as long as the machine running the app has internet access. Subsequent downloads are instant since the cached files are reused.
+**This now happens automatically.** The first time you download an Arabic PDF, the app downloads the **Amiri** font (the same family used across the website) directly from Google Fonts and caches it in `static/fonts/` — no manual step needed, as long as the machine running the app has internet access. Subsequent downloads are instant since the cached files are reused.
 
 If the machine has no internet access (e.g. an offline server), the automatic download fails gracefully and the app falls back to a default font with a console warning — English PDFs are completely unaffected either way. To fix it manually in that case:
 
-1. Download the **AmiriQuran** font (free, open-source, Google Fonts):
+1. Download the **Amiri** font (free, open-source, Google Fonts):
 
-   * https://fonts.google.com/specimen/AmiriQuran → "Download family"
+   * https://fonts.google.com/specimen/Amiri → "Download family"
 2. From the unzipped folder, copy these two files into `static/fonts/`:
 
-   * `AmiriQuran-Regular.ttf` → rename if needed to exactly `AmiriQuran-Regular.ttf`
+   * `Amiri-Regular.ttf` → rename if needed to exactly `Amiri-Regular.ttf`
+   * `Amiri-Bold.ttf` (or `Amiri-Bold` weight) → rename to exactly `Amiri-Bold.ttf`
 3. Restart the Flask app.
 
 Either way, also make sure `arabic-reshaper` and `python-bidi` are installed (they're in `requirements.txt`) — they handle Arabic letter shaping and right-to-left ordering, which the font file alone doesn't do. Without them, Arabic letters will appear disconnected/in the wrong order even with the correct font in place; the app prints a console warning if they're missing.
